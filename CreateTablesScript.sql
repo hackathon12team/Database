@@ -78,9 +78,9 @@ CREATE TABLE IF NOT EXISTS `HEATDB`.`PRIORITY` (
 
 
 -- -----------------------------------------------------
--- Table `HEATDB`.`PRODUCTS`
+-- Table `HEATDB`.`DISH_COMPONENTS`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `HEATDB`.`PRODUCTS` (
+CREATE TABLE IF NOT EXISTS `HEATDB`.`DISH_COMPONENTS` (
   `dish_id` INT NOT NULL,
   `ingredient_id` INT NULL,
   `weight` FLOAT NOT NULL,
