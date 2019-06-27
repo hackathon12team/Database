@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS `mydb`.`USERS` (
+CREATE TABLE IF NOT EXISTS `HEATDB`.`USERS` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `email` VARCHAR(45) NULL,
   `username` VARCHAR(45) NULL,
@@ -12,9 +12,9 @@ CREATE TABLE IF NOT EXISTS `mydb`.`USERS` (
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`PARAMETERS`
+-- Table `HEATDB`.`PARAMETERS`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`PARAMETERS` (
+CREATE TABLE IF NOT EXISTS `HEATDB`.`PARAMETERS` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `user_id` INT NOT NULL,
   `weight` FLOAT NOT NULL,
@@ -25,15 +25,15 @@ CREATE TABLE IF NOT EXISTS `mydb`.`PARAMETERS` (
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
   CONSTRAINT `user_id_fk`
     FOREIGN KEY (`user_id`)
-    REFERENCES `mydb`.`USERS` (`id`)
+    REFERENCES `HEATDB`.`USERS` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`INGREDIENTS`
+-- Table `HEATDB`.`INGREDIENTS`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`INGREDIENTS` (
+CREATE TABLE IF NOT EXISTS `HEATDB`.`INGREDIENTS` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `calories` INT NOT NULL,
@@ -42,24 +42,23 @@ CREATE TABLE IF NOT EXISTS `mydb`.`INGREDIENTS` (
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`DISHES`
+-- Table `HEATDB`.`DISHES`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`DISHES` (
+CREATE TABLE IF NOT EXISTS `HEATDB`.`DISHES` (
   `id` INT NOT NULL,
   `name` VARCHAR(45) NOT NULL,
   `description` VARCHAR(500) NOT NULL,
   `category` INT NOT NULL,
   `meal_type_mask` INT NOT NULL,
-
   `photo_url` VARCHAR(100) NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE)
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`PRIORITY`
+-- Table `HEATDB`.`PRIORITY`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`PRIORITY` (
+CREATE TABLE IF NOT EXISTS `HEATDB`.`PRIORITY` (
   `user_id` INT NOT NULL,
   `dish_id` INT NOT NULL,
   `priority` INT NOT NULL DEFAULT 10,
@@ -67,20 +66,20 @@ CREATE TABLE IF NOT EXISTS `mydb`.`PRIORITY` (
   INDEX `dish_id_idx` (`dish_id` ASC) VISIBLE,
   CONSTRAINT `user_id_fk`
     FOREIGN KEY (`user_id`)
-    REFERENCES `mydb`.`USERS` (`id`)
+    REFERENCES `HEATDB`.`USERS` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `dish_id_fk`
     FOREIGN KEY (`dish_id`)
-    REFERENCES `mydb`.`DISHES` (`id`)
+    REFERENCES `HEATDB`.`DISHES` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`PRODUCTS`
+-- Table `HEATDB`.`PRODUCTS`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`PRODUCTS` (
+CREATE TABLE IF NOT EXISTS `HEATDB`.`PRODUCTS` (
   `dish_id` INT NOT NULL,
   `ingredient_id` INT NULL,
   `weight` FLOAT NOT NULL,
@@ -88,20 +87,20 @@ CREATE TABLE IF NOT EXISTS `mydb`.`PRODUCTS` (
   INDEX `ingredient_id_idx` (`ingredient_id` ASC) VISIBLE,
   CONSTRAINT `dish_id_fk`
     FOREIGN KEY (`dish_id`)
-    REFERENCES `mydb`.`DISHES` (`id`)
+    REFERENCES `HEATDB`.`DISHES` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `ingredient_id_fk`
     FOREIGN KEY (`ingredient_id`)
-    REFERENCES `mydb`.`INGREDIENTS` (`id`)
+    REFERENCES `HEATDB`.`INGREDIENTS` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`MEALS`
+-- Table `HEATDB`.`MEALS`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`MEALS` (
+CREATE TABLE IF NOT EXISTS `HEATDB`.`MEALS` (
   `user_id` INT NOT NULL,
   `dish_id` INT NULL,
   `date` DATE NOT NULL,
@@ -110,11 +109,11 @@ CREATE TABLE IF NOT EXISTS `mydb`.`MEALS` (
   INDEX `dish_id_idx` (`dish_id` ASC) VISIBLE,
   CONSTRAINT `user_id_fk`
     FOREIGN KEY (`user_id`)
-    REFERENCES `mydb`.`USERS` (`id`)
+    REFERENCES `HEATDB`.`USERS` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `dish_id_fk`
     FOREIGN KEY (`dish_id`)
-    REFERENCES `mydb`.`DISHES` (`id`)
+    REFERENCES `HEATDB`.`DISHES` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
