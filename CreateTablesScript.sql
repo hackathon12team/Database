@@ -21,6 +21,7 @@ CREATE TABLE IF NOT EXISTS `HEATDB`.`PARAMETERS` (
   `height` FLOAT NOT NULL,
   `physical_activity` INT NOT NULL,
   `target_weight` FLOAT NOT NULL,
+  `created_at` TIMESTAMP DEFAULT NOW() NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
   CONSTRAINT `user_id_fk`
