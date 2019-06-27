@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `HEATDB`.`DISHES` (
   `name` VARCHAR(45) NOT NULL,
   `description` VARCHAR(500) NOT NULL,
   `category` INT NOT NULL,
-  `meal_type_mask` INT NOT NULL,
+  `meal_type_mask` BYTEA NOT NULL,
   `photo_url` VARCHAR(100) NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE)
