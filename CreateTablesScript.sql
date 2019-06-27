@@ -1,14 +1,14 @@
 CREATE TABLE IF NOT EXISTS `mydb`.`USERS` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `email` VARCHAR(45) NOT NULL,
-  `username` VARCHAR(45) NOT NULL,
+  `email` VARCHAR(45) NULL,
+  `username` VARCHAR(45) NULL,
   `password` VARCHAR(45) NOT NULL,
   `gender` INT NOT NULL,
   `birthdate` DATE NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
-  UNIQUE INDEX `password_UNIQUE` (`password` ASC) VISIBLE,
-  UNIQUE INDEX `login_UNIQUE` (`username` ASC) VISIBLE)
+  UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE)
+  UNIQUE INDEX `username_UNIQUE` (`username` ASC) VISIBLE)
 
 
 -- -----------------------------------------------------
@@ -23,7 +23,6 @@ CREATE TABLE IF NOT EXISTS `mydb`.`PARAMETERS` (
   `target_weight` FLOAT NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
-  UNIQUE INDEX `user_id_UNIQUE` (`user_id` ASC) VISIBLE,
   CONSTRAINT `user_id_fk`
     FOREIGN KEY (`user_id`)
     REFERENCES `mydb`.`USERS` (`id`)
@@ -50,6 +49,9 @@ CREATE TABLE IF NOT EXISTS `mydb`.`DISHES` (
   `name` VARCHAR(45) NOT NULL,
   `description` VARCHAR(500) NOT NULL,
   `category` INT NOT NULL,
+  `meal_type_mask` INT NOT NULL,
+
+  `photo_url` VARCHAR(100) NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE)
 
@@ -81,7 +83,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`PRIORITY` (
 CREATE TABLE IF NOT EXISTS `mydb`.`PRODUCTS` (
   `dish_id` INT NOT NULL,
   `ingredient_id` INT NULL,
-  `weight` VARCHAR(45) NOT NULL,
+  `weight` FLOAT NOT NULL,
   PRIMARY KEY (`dish_id`, `ingredient_id`),
   INDEX `ingredient_id_idx` (`ingredient_id` ASC) VISIBLE,
   CONSTRAINT `dish_id_fk`
