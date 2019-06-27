@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`PARAMETERS` (
   `user_id` INT NOT NULL,
   `weight` FLOAT NOT NULL,
   `height` FLOAT NOT NULL,
-  `physical_acitvity` INT NOT NULL,
+  `physical_activity` INT NOT NULL,
   `target_weight` FLOAT NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
