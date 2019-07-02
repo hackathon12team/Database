@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS PARAMETERS (
   user_id INT NOT NULL,
   weight FLOAT NOT NULL,
   height FLOAT NOT NULL,
-  physical_activity INT NOT NULL,
+  physical_activity FLOAT NOT NULL,
   target_weight FLOAT NOT NULL,
   created_at TIMESTAMP DEFAULT NOW() NOT NULL,
   PRIMARY KEY (id),
